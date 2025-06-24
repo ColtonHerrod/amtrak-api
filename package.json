@@ -8,7 +8,7 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-import": "^2.32.0",
     "prettier": "^3.6.0",
-    "sinon": "^17.0.1",
+    "sinon": "^21.0.0",
     "tap": "^18.5.7"
   },
   "prettier": {},
