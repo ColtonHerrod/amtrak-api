@@ -44,7 +44,7 @@ jobs:
         run: npm run test:test
 
       - name: store coverage output
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: coverage
           path: .tap
