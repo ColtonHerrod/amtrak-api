@@ -1,36 +1,75 @@
 {{> start . }}
 
 {{#routes}}
-<single-route>
+<single-route class="margin-bottom-4 border-bottom border-primary-light">
   <h1>
+    <button
+      class="toggle-route"
+      type="button"
+      aria-expanded="false"
+      aria-controls="route-details-{{ @index }}">
+      ▶
+    </button>
     {{#if ../index }}<a href="{{ url }}">{{/if}}{{ name }}{{#if ../index }}</a>{{/if}}
   </h1>
-
-  {{#each trains}}
+  <div id="route-details-{{ @index }}" class="collapsible-content" style="display: none;">
+    {{#each trains}}
   <single-train class="margin-bottom-2 padding-bottom-2 border-bottom border-primary-light">
     <h3>
+      <button 
+        class="toggle-train" 
+        type="button" 
+        aria-expanded="false" 
+        aria-controls="train-details-{{ number }}">
+        ▶
+      </button>
       <a href="{{ url }}">Train #{{ number }}</a>
       <span class="usa-tag margin-left-1 {{ tag.bg }} {{ tag.color }}">{{ tag.text }}</span>
       <br>
       <small>from {{ from }} to {{ to }}</small>
     </h3>
-      
-
-    <train-track class="horizontal {{ trackColor }} margin-bottom-1">
-    {{#each stations }}
-      <train-station class="flex-auto">
-        <station-dot class="{{ dotColor }}"></station-dot>
-      </train-station>
-      {{# unless @last }}
-      <station-spacer class="flex-fill {{ spacerColors.after }}"></station-spacer>
-      {{/ unless }}
-    {{/ each }}
-    </train-track>
-    {{ info }}
+    <div id="train-details-{{ number }}" class="collapsible-content" style="display: none;">
+      <train-track class="horizontal {{ trackColor }} margin-bottom-1">
+      {{#each stations }}
+        <train-station class="flex-auto">
+          <station-dot class="{{ dotColor }}"></station-dot>
+        </train-station>
+        {{# unless @last }}
+        <station-spacer class="flex-fill {{ spacerColors.after }}"></station-spacer>
+        {{/ unless }}
+      {{/ each }}
+      </train-track>
+      {{ info }}
+    </div>
   </single-train>
   {{/each}}
 
+  </div>
 </single-route>
 {{/routes}}
 
+{{! JavaScript to handle the toggle functionality }}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.toggle-train').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      const content = document.getElementById(btn.getAttribute('aria-controls'));
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', !expanded);
+      btn.textContent = expanded ? '▶' : '▼';
+      if (content) content.style.display = expanded ? 'none' : '';
+    });
+  });
+  // Route toggles
+  document.querySelectorAll('.toggle-route').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      const content = document.getElementById(btn.getAttribute('aria-controls'));
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', !expanded);
+      btn.textContent = expanded ? '▶' : '▼';
+      if (content) content.style.display = expanded ? 'none' : '';
+    });
+  });
+});
+</script>
 {{> end }}
