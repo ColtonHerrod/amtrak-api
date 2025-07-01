@@ -3,6 +3,8 @@
 {{#routes}}
 <single-route class="margin-bottom-4 border-bottom border-primary-light">
   <h1>
+    {{!-- Only show toggle if more than one route --}}
+    {{#if (gt ../routes.length 1) }}
     <button
       class="toggle-route"
       type="button"
@@ -10,9 +12,10 @@
       aria-controls="route-details-{{ @index }}">
       ▶
     </button>
+    {{/if}}
     {{#if ../index }}<a href="{{ url }}">{{/if}}{{ name }}{{#if ../index }}</a>{{/if}}
   </h1>
-  <div id="route-details-{{ @index }}" class="collapsible-content" style="display: none;">
+  <div id="route-details-{{ @index }}" class="collapsible-content" style="{{#unless (gt ../routes.length 1)}}display: block;{{else}}display: none;{{/unless}}">
     {{#each trains}}
   <single-train class="margin-bottom-2 padding-bottom-2 border-bottom border-primary-light">
     <h3>
@@ -48,7 +51,6 @@
 </single-route>
 {{/routes}}
 
-{{! JavaScript to handle the toggle functionality }}
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('.toggle-train').forEach(function(btn) {
@@ -60,16 +62,19 @@ document.addEventListener('DOMContentLoaded', function() {
       if (content) content.style.display = expanded ? 'none' : '';
     });
   });
-  // Route toggles
-  document.querySelectorAll('.toggle-route').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      const content = document.getElementById(btn.getAttribute('aria-controls'));
-      const expanded = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', !expanded);
-      btn.textContent = expanded ? '▶' : '▼';
-      if (content) content.style.display = expanded ? 'none' : '';
+  // Only enable route toggles if more than one route
+  const routes = document.querySelectorAll('.toggle-route');
+  if (routes.length > 1) {
+    routes.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        const content = document.getElementById(btn.getAttribute('aria-controls'));
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', !expanded);
+        btn.textContent = expanded ? '▶' : '▼';
+        if (content) content.style.display = expanded ? 'none' : '';
+      });
     });
-  });
+  }
 });
 </script>
 {{> end }}

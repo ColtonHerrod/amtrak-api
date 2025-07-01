@@ -106,6 +106,10 @@ const routes = JSON.parse(
     url: routeUrl,
   };
 
+  handlebars.registerHelper('gt', function(a, b) {
+    return a > b;
+  });
+
   route.trains = routeInfo.trains.map((trainInfo) => {
     const train = {
       route: route.name,
