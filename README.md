@@ -8,7 +8,7 @@ are only planned. The result is a set of JSON files representing the current
 state of the map.
 
 The tool can also build a static website from the data. A version of that site
-is live at [mgwalker.github.io/amtrak-api/](https://mgwalker.github.io/amtrak-api/).
+is live at [coltonherrod.github.io/amtrak-api/](https://coltonherrod.github.io/amtrak-api/).
 
 ## Usage
 

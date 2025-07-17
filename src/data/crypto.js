@@ -57,14 +57,20 @@ export const decrypt = async (data, keyDerivationPassword) => {
   // It's encrypted with AES-128-CBC using the generated key above and the
   // hardcoded initialization vector.
   const decipher = createDecipheriv("aes-128-cbc", key, CRYPTO_IV);
+  decipher.setAutoPadding(true);
 
   // The Node library works in chunks, so we'll get some stuff out as soon as we
   // update the decipher, and we have to get the rest out by calling .final().
   // The result is a string either way, so just join the array of results at the
   // end and be happy.
-  const text = [decipher.update(ciphertext, "binary", "utf-8")];
-  text.push(decipher.final("utf-8"));
-  return text.join("");
+  try {
+    const text = [decipher.update(ciphertext, "binary", "utf-8")];
+    text.push(decipher.final("utf-8"));
+    return text.join("");
+  } catch (error) {
+    console.error("Decryption error:", error);
+    return null;
+  }
 };
 
 export const parse = async (data) => {
