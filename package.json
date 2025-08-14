@@ -14,13 +14,14 @@
   "prettier": {},
   "dependencies": {
     "dayjs": "^1.11.13",
-    "dotenv": "16.5.0",
+    "dotenv": "17.2.1",
     "handlebars": "^4.7.8"
   },
   "scripts": {
     "site": "npm run update && node src/site/build.js",
     "update": "rm -rf _site && node src/data/main.js",
     "test:lint": "eslint 'src/**/*.js'",
+    "test:lint-fix": "eslint 'src/**/*.js' --fix",
     "test:test": "tap 'src/**/*.test.js' --coverage-report lcov --allow-incomplete-coverage",
     "test": "npm run test:lint && npm run test:test"
   }

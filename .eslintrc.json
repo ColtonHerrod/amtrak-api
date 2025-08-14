@@ -37,7 +37,9 @@
         "message":
           "`with` is disallowed in strict mode because it makes code impossible to predict and optimize."
       }
-    ]
+    ],
+
+    "no-console": "off"
   },
   "env": {
     "es2023": true,
