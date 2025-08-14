@@ -21,6 +21,7 @@
     "site": "npm run update && node src/site/build.js",
     "update": "rm -rf _site && node src/data/main.js",
     "test:lint": "eslint 'src/**/*.js'",
+    "test:lint-fix": "eslint 'src/**/*.js' --fix",
     "test:test": "tap 'src/**/*.test.js' --coverage-report lcov --allow-incomplete-coverage",
     "test": "npm run test:lint && npm run test:test"
   }
