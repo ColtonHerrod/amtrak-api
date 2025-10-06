@@ -9,7 +9,7 @@
     "eslint-plugin-import": "^2.32.0",
     "prettier": "3.6.2",
     "sinon": "^21.0.0",
-    "tap": "^21.1.0"
+    "tap": "^21.1.1"
   },
   "prettier": {},
   "dependencies": {
