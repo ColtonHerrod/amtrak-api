@@ -14,7 +14,7 @@
   "prettier": {},
   "dependencies": {
     "dayjs": "^1.11.18",
-    "dotenv": "17.2.2",
+    "dotenv": "17.2.3",
     "handlebars": "^4.7.8"
   },
   "scripts": {
