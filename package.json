@@ -9,13 +9,13 @@
     "eslint-plugin-import": "^2.32.0",
     "prettier": "3.6.2",
     "sinon": "^21.0.0",
-    "tap": "^21.1.0"
+    "tap": "^21.8.0"
   },
   "prettier": {},
   "dependencies": {
     "dayjs": "^1.11.23",
     "dotenv": "18.0.3",
-    "handlebars": "^4.7.8"
+    "handlebars": "^4.7.9"
   },
   "scripts": {
     "site": "npm run update && node src/site/build.js",
